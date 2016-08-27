@@ -2,6 +2,11 @@
 
 <% @posts.each do |post| %>
   <h2><%= link_to post.title, post %></h2>
+  <% if post.user_id == 0 || post.user_id == nil %>
+  <p>Anonyme</p>
+  <% else %>
+  <%= post.user.username %>
+  <% end %>
   <p>
     il y a <%= time_ago_in_words post.created_at %>
   </p>

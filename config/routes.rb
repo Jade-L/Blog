@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   get 'comments/create'
 
   get 'comments/destroy'
-
+resources :comments
   resources :posts do
     resources :comments
   end

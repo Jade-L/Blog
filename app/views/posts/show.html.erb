@@ -5,12 +5,22 @@
 <h2>Commentaire</h2>
 
 <% @post.comments.each do |comment| %>
+  <% if comment.user_id == 0 || comment.user_id == nil %>
+  <p>Anonyme</p>
+  <% else %>
+  <%= comment.user.username %>
+  <% end %>
   <p><%= comment.text %></p>
   <p>Il y a <%= time_ago_in_words comment.created_at %></p>
   <p><%= link_to "Supprimer commentaire", [@post, comment], :method => :delete, :confirm => "Etes-vous sure ?" %></p>
 <% end %>
 
 <%= form_for [@post, @post.comments.build] do |f| %>
+<% if user_signed_in? %>
+<%= f.hidden_field :user_id, value: current_user.id %>
+<% else %>
+<%= f.hidden_field :user_id, value: 0 %>
+<% end %>
   <p><%= f.text_area :text, :size => "40x10" %></p>
   <p><%= f.submit "Poster un commentaire" %></p>
 <% end %>
