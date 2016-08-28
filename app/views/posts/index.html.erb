@@ -3,6 +3,7 @@
 <h1>Welcome</h1>
 <% if user_signed_in? %>
 <%= link_to "Se deconnecter", destroy_user_session_path, method: :delete %>
+<%= link_to "Modifier mon compte", edit_user_registration_path %>
 <% else %>
 <a href="/users/sign_up">S'inscrire</a>
 <a href="/users/sign_in">Se connecter</a>
@@ -23,5 +24,5 @@
 <% end %>
 
 <p>
-  <%= link_to "New post", new_post_path %>
+  <%= link_to "Nouvel article", new_post_path %>
 </p>
