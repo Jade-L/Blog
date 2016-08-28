@@ -1,13 +1,5 @@
 <p id="notice"><%= notice %> </p>
 <p id="alert"><%= alert %></p>
-<h1>Welcome</h1>
-<% if user_signed_in? %>
-<%= link_to "Se deconnecter", destroy_user_session_path, method: :delete %>
-<%= link_to "Modifier mon compte", edit_user_registration_path %>
-<% else %>
-<a href="/users/sign_up">S'inscrire</a>
-<a href="/users/sign_in">Se connecter</a>
-<% end %>
 <% @posts.each do |post| %>
   <h2><%= link_to post.title, post %></h2>
   <% if post.user_id == 0 %>
